@@ -2,9 +2,15 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import secrets
 from stock_analyzer import StockAnalyzer
 import os
+import logging
 
 app = Flask(__name__)
+
+# Correctly retrieve the environment variables
 app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(16))
+FRED_API_KEY = os.environ.get('FRED_API_KEY')
+
+logging.basicConfig(level=logging.DEBUG)
 
 @app.route('/')
 def home():
@@ -17,7 +23,6 @@ def analyze():
         intent = request.form['intent']
         
         # Initialize the StockAnalyzer with your FRED API key
-        FRED_API_KEY = '1ad563989157016048d0d0d7490d0eed'
         analyzer = StockAnalyzer(fred_api_key=FRED_API_KEY)
         
         analyzer.set_user_intent(intent)
