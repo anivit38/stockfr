@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Stocks - Buy or Bye Stocks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/" class="home-scroll"><img src="{{ url_for('static', filename='logo.png') }}" alt="Buy or Bye Logo" class="navbar-logo"></a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/analyze">Analyze Stocks</a>
+            <a href="/terms">Terms and Conditions</a>
+        </div>
+        <div class="auth-links">
+            {% if session.get('username') %}
+                <a href="#">Welcome, {{ session.get('username') }}</a>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/signup">Signup</a>
+                <a href="/login">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome to Buy or Bye Stocks!</h1>
+        <form action="/analyze" method="post">
+            <label for="stock_name">Stock Name:</label>
+            <input type="text" id="stock_name" name="stock_name" required>
+            <label for="intent">Are you planning on buying or selling the stock? (buy/sell):</label>
+            <input type="text" id="intent" name="intent" required>
+            <button type="submit">Analyze</button>
+        </form>
+        <div class="footer">
+            <p>
+                By Using This, You Agree to the <a href="/terms">Terms and Conditions</a> 
+            </p>
+            </div>
+    </div>
+</body>
+</html>

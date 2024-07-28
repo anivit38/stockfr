@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+    <style>
+        .terms-section {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .terms-section h2 {
+            color: #0056b3;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .terms-section p {
+            font-size: 1em;
+            color: #333;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/"><img src="{{ url_for('static', filename='logo.png') }}" alt="Buy or Bye Logo" class="navbar-logo"></a>
+        <a href="/">Home</a>
+        <a href="/analyze">Analyze Stocks</a>
+        <a href="/terms">Terms and Conditions</a>
+        <a href="/signup">Signup</a>
+        <a href="/login">Login</a>
+    </div>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Buy or Bye Logo" class="logo">
+        <h1>Terms and Conditions</h1>
+        <div class="terms-section">
+            <h2>1. Introduction</h2>
+            <p>
+                Welcome to Buy or Bye Stocks. These Terms and Conditions govern your use of our website.
+                By accessing and using our website, you agree to comply with these terms.
+            </p>
+        </div>
+        <div class="terms-section">
+            <h2>2. User Responsibilities</h2>
+            <p>
+                As a user, you are responsible for your use of the website and for any content you post.
+                You must use the website in compliance with all applicable laws and regulations.
+            </p>
+        </div>
+        <div class="terms-section">
+            <h2>3. Intellectual Property</h2>
+            <p>
+                All content on this website, including text, graphics, logos, and software, is the property of
+                Buy or Bye Stocks or its content suppliers and is protected by intellectual property laws.
+            </p>
+        </div>
+        <div class="terms-section">
+            <h2>4. Limitation of Liability</h2>
+            <p>
+                Buy or Bye Stocks will not be liable for any damages arising from the use of this website.
+                This includes direct, indirect, incidental, punitive, and consequential damages.
+            </p>
+        </div>
+        <div class="terms-section">
+            <h2>5. Changes to Terms</h2>
+            <p>
+                We reserve the right to modify these terms at any time. Your continued use of the website
+                following any changes signifies your acceptance of the new terms.
+            </p>
+        </div>
+        <div class="terms-section">
+            <h2>6. Contact Information</h2>
+            <p>
+                If you have any questions about these Terms and Conditions, please contact us at
+                [your contact information].
+            </p>
+        </div>
+        <div class="back-button">
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

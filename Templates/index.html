@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy or Bye Stocks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/"><img src="{{ url_for('static', filename='logo.png') }}" alt="Buy or Bye Logo" class="navbar-logo"></a>
+        <a href="/">Home</a>
+        <a href="/analyze">Analyze Stocks</a>
+        <a href="/terms">Terms and Conditions</a>
+    </div>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Buy or Bye Logo" class="logo">
+        <h1>Welcome to Buy or Bye Stocks!</h1>
+        <form action="/analyze" method="post">
+            <label for="stock_name">Stock Name:</label>
+            <input type="text" id="stock_name" name="stock_name" required><br><br>
+
+            <label for="intent">Are you planning on buying or selling the stock? (buy/sell):</label>
+            <input type="text" id="intent" name="intent" required><br><br>
+
+            <label for="avg_volume">Average Trading Volume:</label>
+            <input type="text" id="avg_volume" name="avg_volume" required><br><br>
+
+            <label for="rsi">RSI (type 'n/a' if not available):</label>
+            <input type="text" id="rsi" name="rsi"><br><br>
+
+            <label for="sentiment_score">Sentiment Score (type 'n/a' if not available):</label>
+            <input type="text" id="sentiment_score" name="sentiment_score"><br><br>
+
+            <label for="insider_actions">Insider Actions (buy/sell, type 'n/a' if not available):</label>
+            <input type="text" id="insider_actions" name="insider_actions"><br><br>
+
+            <label for="value_score">Value Score (type 'n/a' if not available):</label>
+            <input type="text" id="value_score" name="value_score"><br><br>
+
+            <label for="growth_score">Growth Score (type 'n/a' if not available):</label>
+            <input type="text" id="growth_score" name="growth_score"><br><br>
+
+            <button type="submit">Analyze</button>
+        </form>
+        <footer>
+            <p>By using this you agree to our <a href="/terms">Terms and Conditions</a></p>
+        </footer>
+    </div>
+</body>
+</html>
