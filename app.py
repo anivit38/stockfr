@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 import secrets
 from stock_analyzer import StockAnalyzer
+import os
 
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(16))
 
 @app.route('/')
 def home():
