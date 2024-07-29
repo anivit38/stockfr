@@ -14,28 +14,36 @@ logging.basicConfig(level=logging.DEBUG)
 
 @app.route('/')
 def home():
+    logging.debug('Home page accessed')
     return render_template('home.html')
 
 @app.route('/analyze', methods=['GET', 'POST'])
 def analyze():
+    logging.debug('Analyze page accessed')
     if request.method == 'POST':
         stock_name = request.form['stock_name']
         intent = request.form['intent']
+        logging.debug(f'Form data received - Stock Name: {stock_name}, Intent: {intent}')
+        try:
+            # Initialize the StockAnalyzer with your FRED API key
+            analyzer = StockAnalyzer(fred_api_key=FRED_API_KEY)
 
-        # Initialize the StockAnalyzer with your FRED API key
-        analyzer = StockAnalyzer(fred_api_key=FRED_API_KEY)
+            analyzer.set_user_intent(intent)
 
-        analyzer.set_user_intent(intent)
+            stock_data = analyzer.get_stock_data(stock_name)
+            if stock_data is None:
+                logging.error('Failed to retrieve stock data')
+                return render_template('result.html', result="Failed to retrieve data. Please check the stock symbol and try again.")
 
-        stock_data = analyzer.get_stock_data(stock_name)
-        if stock_data is None:
-            return render_template('result.html', result="Failed to retrieve data. Please check the stock symbol and try again.")
+            analyzer.perform_analysis(stock_data)
 
-        analyzer.perform_analysis(stock_data)
+            advice, movement = analyzer.evaluate_stock()
 
-        advice, movement = analyzer.evaluate_stock()
-
-        return render_template('result.html', result=f"Stock Rating: {advice}. Based on the analysis, the stock's {movement}.")
+            logging.debug(f'Analysis result - Advice: {advice}, Movement: {movement}')
+            return render_template('result.html', result=f"Stock Rating: {advice}. Based on the analysis, the stock's {movement}.")
+        except Exception as e:
+            logging.exception('An error occurred during analysis')
+            return render_template('result.html', result="An error occurred during analysis. Please try again.")
     return render_template('analyze.html')
 
 @app.route('/terms')
